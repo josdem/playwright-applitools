@@ -1,6 +1,5 @@
-import { BatchInfo, Configuration, VisualGridRunner, BrowserType, DeviceName, ScreenOrientation, Eyes } from "@applitools/eyes-playwright"
+import { BatchInfo, Configuration, VisualGridRunner, BrowserType, DeviceName, ScreenOrientation, Eyes, Target } from "@applitools/eyes-playwright"
 
-const BREAK_POINT_SIZE = 700
 const CHROME = {
   width: 1280,
   height: 768,
@@ -40,7 +39,7 @@ const setUpTest = async (page, appName, testName) => {
 }
 
 const checkWindowEyes = async (screenshot) => {
-  await eyes.check(screenshot, Target.window().layoutBreakpoints(BREAK_POINT_SIZE))
+  await eyes.check(screenshot, Target.window().fully())
 }
 
 const closeEyes = async () => {

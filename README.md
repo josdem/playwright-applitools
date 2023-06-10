@@ -34,3 +34,13 @@ npx playwright test
 ```bash
 npx playwright show-report
 ```
+
+#### Setting up environment on Windows
+
+```bash
+ Set-Item -Path Env:APPLITOOLS_API_KEY -Value ${apiKey}
+```
+
+where:
+
+- `${apiKey}` Is your Applitools api key

@@ -1,12 +1,30 @@
-import { BatchInfo, VisualGridRunner, BrowserType, DeviceName, ScreenOrientation } from "@applitools/eyes-playwright"
+import { BatchInfo, Configuration, VisualGridRunner, BrowserType, DeviceName, ScreenOrientation, Eyes } from "@applitools/eyes-playwright"
+
+const BREAK_POINT_SIZE = 700
+const CHROME = {
+  width: 1280,
+  height: 768,
+}
+const FIREFOX = {
+  width: 800,
+  height: 600,
+}
+const EDGE = {
+  width: 800,
+  height: 600,
+}
+const SAFARI = {
+  width: 1024,
+  height: 768,
+}
 
 let configuration
 let runner
+let eyes
 
 const setUpConfiguration = async (batchName) => {
   runner = new VisualGridRunner({ testConcurrency: 5 })
-
-  configuration = eyes.getConfiguration()
+  configuration = new Configuration()
   configuration.setBatch(new BatchInfo(batchName))
   configuration.addBrowser(CHROME.width, CHROME.height, BrowserType.CHROME)
   configuration.addBrowser(FIREFOX.width, FIREFOX.height, BrowserType.FIREFOX)
@@ -17,8 +35,12 @@ const setUpConfiguration = async (batchName) => {
 }
 
 const setUpTest = async (page, appName, testName) => {
-  let eyes = new Eyes(runner, configuration)
+  eyes = new Eyes(runner, configuration)
   await eyes.open(page, appName, testName)
+}
+
+const checkWindowEyes = async (screenshot) => {
+  await eyes.check(screenshot, Target.window().layoutBreakpoints(BREAK_POINT_SIZE))
 }
 
 const closeEyes = async () => {
@@ -34,5 +56,6 @@ module.exports = {
   setUpTest,
   closeEyes,
   cleaning,
+  checkWindowEyes,
   setUpConfiguration,
 }

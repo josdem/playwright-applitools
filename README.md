@@ -26,7 +26,7 @@ npx prettier --write .
 #### To run the project
 
 ```bash
-npx playwright test
+npx playwright test --project chromium
 ```
 
 #### To see integrated reports

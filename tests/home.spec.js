@@ -7,13 +7,12 @@ test.beforeAll(async () => {
 })
 
 test.beforeEach(async ({ page }) => {
-  await applitools.setUpTest(properties.app, page, test.info().title)
+  await applitools.setUpTest(page, properties.app, test.info().title)
 })
 
 test("should validate page title", async ({ page }) => {
   await page.goto(properties.url)
   await expect(page).toHaveTitle(properties.title)
-  //TODO: Fix this line, thwor error: TypeError: Cannot set properties of undefined (setting 'name')
   await applitools.checkWindowEyes("Home Page")
 })
 

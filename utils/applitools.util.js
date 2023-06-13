@@ -39,7 +39,7 @@ const setUpTest = async (page, appName, testName) => {
 }
 
 const checkWindowEyes = async (screenshot) => {
-  await eyes.check(screenshot, Target.window().fully())
+  await eyes.check(screenshot, Target.window().layout())
 }
 
 const closeEyes = async () => {

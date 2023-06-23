@@ -35,10 +35,22 @@ npx playwright test --project chromium
 npx playwright show-report
 ```
 
-#### Setting up environment on Windows
+#### Setting up environment
 
 ```bash
- Set-Item -Path Env:APPLITOOLS_API_KEY -Value ${apiKey}
+export APPLITOOLS_API_KEY=${YOUR_APPLITOOLS_API_KEY}
+```
+
+where:
+
+- `${YOUR_APPLITOOLS_API_KEY}` is something like: `Ag4hfEVDIMykuCpWk61ppg3VJ9fkK0uht100HXnvGPlag220` (Check with your service provider if you do not have it)
+
+**Note**
+
+If you are using Windows based platform:
+
+```bash
+$Env:APPLITOOLS_API_KEY="YOUR_APPLITOOLS_API_KEY"
 ```
 
 where:

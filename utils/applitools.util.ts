@@ -1,4 +1,5 @@
 import { BatchInfo, Configuration, VisualGridRunner, BrowserType, DeviceName, ScreenOrientation, Eyes, Target } from "@applitools/eyes-playwright"
+import { Page } from "@playwright/test"
 
 const CHROME = {
   width: 1280,
@@ -21,7 +22,7 @@ let configuration
 let runner
 let eyes
 
-const setUpConfiguration = async (batchName) => {
+export function setUpConfiguration(batchName: string){
   runner = new VisualGridRunner({ testConcurrency: 5 })
   configuration = new Configuration()
   configuration.setBatch(new BatchInfo(batchName))
@@ -33,28 +34,20 @@ const setUpConfiguration = async (batchName) => {
   configuration.addDeviceEmulation(DeviceName.Pixel_5, ScreenOrientation.PORTRAIT)
 }
 
-const setUpTest = async (page, appName, testName) => {
+export async function setUpTest(page: Page, appName: string, testName: string){
   eyes = new Eyes(runner, configuration)
   await eyes.open(page, appName, testName)
 }
 
-const checkWindowEyes = async (screenshot) => {
+export async function checkWindowEyes(screenshot: string){
   await eyes.check(screenshot, Target.window().layout())
 }
 
-const closeEyes = async () => {
+export async function closeEyes(){
   await eyes.close()
 }
 
-const cleaning = async () => {
+export async function cleaning(){
   const results = await runner.getAllTestResults()
   console.log("Visual test results", results)
-}
-
-module.exports = {
-  setUpTest,
-  closeEyes,
-  cleaning,
-  checkWindowEyes,
-  setUpConfiguration,
 }

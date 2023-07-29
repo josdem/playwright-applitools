@@ -51,3 +51,5 @@ export async function cleaning(){
   const results = await runner.getAllTestResults()
   console.log("Visual test results", results)
 }
+
+export default { setUpConfiguration, setUpTest, checkWindowEyes, closeEyes, cleaning }

@@ -23,6 +23,12 @@ npm install
 npx prettier --write .
 ```
 
+#### To run lint validation
+
+```bash
+npm run lint
+```
+
 #### To run the project
 
 ```bash

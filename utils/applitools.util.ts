@@ -18,11 +18,11 @@ const SAFARI = {
   height: 768,
 }
 
-let configuration
-let runner
-let eyes
+let configuration: Configuration
+let runner: VisualGridRunner
+let eyes: Eyes
 
-export function setUpConfiguration(batchName: string){
+function setUpConfiguration(batchName: string) {
   runner = new VisualGridRunner({ testConcurrency: 5 })
   configuration = new Configuration()
   configuration.setBatch(new BatchInfo(batchName))
@@ -34,20 +34,20 @@ export function setUpConfiguration(batchName: string){
   configuration.addDeviceEmulation(DeviceName.Pixel_5, ScreenOrientation.PORTRAIT)
 }
 
-export async function setUpTest(page: Page, appName: string, testName: string){
+async function setUpTest(page: Page, appName: string, testName: string) {
   eyes = new Eyes(runner, configuration)
   await eyes.open(page, appName, testName)
 }
 
-export async function checkWindowEyes(screenshot: string){
+async function checkWindowEyes(screenshot: string) {
   await eyes.check(screenshot, Target.window().layout())
 }
 
-export async function closeEyes(){
+async function closeEyes() {
   await eyes.close()
 }
 
-export async function cleaning(){
+async function cleaning() {
   const results = await runner.getAllTestResults()
   console.log("Visual test results", results)
 }

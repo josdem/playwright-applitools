@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@applitools/eyes-playwright": "^1.17.19",
+    "@applitools/eyes-playwright": "^1.17.21",
     "@playwright/test": "^1.36.2",
     "@typescript-eslint/eslint-plugin": "^6.2.0",
     "@typescript-eslint/parser": "^6.2.0",

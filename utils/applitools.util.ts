@@ -1,4 +1,4 @@
-import { BatchInfo, Configuration, VisualGridRunner, BrowserType, DeviceName, ScreenOrientation, Eyes, Target } from "@applitools/eyes-playwright"
+import { BatchInfo, Configuration, VisualGridRunner, BrowserType, DeviceName, ScreenOrientation, Eyes, Target, AndroidDeviceName } from "@applitools/eyes-playwright"
 import { Page } from "@playwright/test"
 
 const CHROME = {
@@ -30,7 +30,7 @@ function setUpConfiguration(batchName: string) {
   configuration.addBrowser(FIREFOX.width, FIREFOX.height, BrowserType.FIREFOX)
   configuration.addBrowser(EDGE.width, EDGE.height, BrowserType.EDGE_CHROMIUM)
   configuration.addBrowser(SAFARI.width, SAFARI.height, BrowserType.SAFARI)
-  configuration.addDeviceEmulation(DeviceName.iPhone_11, ScreenOrientation.PORTRAIT)
+  configuration.addMobileDevice(AndroidDeviceName.Pixel_4, ScreenOrientation.PORTRAIT)
   configuration.addDeviceEmulation(DeviceName.Pixel_5, ScreenOrientation.PORTRAIT)
 }
 
